@@ -8,44 +8,58 @@
 </head>
 <body>
     <header>
-        <img src="assets/img/logo.png" alt="Logo da ONG" class="logo">
-        <h1>ONG Esperança</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="projeto.html">Projetos</a></li>
-                <li><a href="cadastro.html">Cadastro</a></li>
-            </ul>
-        </nav>
+        <div class="header-container">
+            <img src="assets/img/logo.png" alt="Logo da ONG" class="logo">
+            <h1>ONG Esperança</h1>
+            <button class="menu-hamburguer" id="menu-hamburguer">&#9776;</button>
+            <nav id="nav-menu">
+                <ul>
+                    <li><a href="index.html" class="ativo">Início</a></li>
+                    <li><a href="projeto.html">Projetos</a></li>
+                    <li><a href="cadastro.html">Cadastro</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <section id="sobre">
-            <h2>Sobre Nós</h2>
-            <p>A ONG Esperança atua há mais de 10 anos promovendo ações sociais, educação e saúde para comunidades carentes.</p>
-        </section>
+        <div class="container">
+            <section id="sobre">
+                <h2>Sobre Nós</h2>
+                <p>A ONG Esperança atua há mais de 10 anos promovendo ações sociais, educação e saúde para comunidades carentes. Nosso compromisso é com a transformação social, oferecendo oportunidades e construindo um futuro mais justo para todos.</p>
+                <a href="projeto.html" class="btn btn-primario">Conheça Nossos Projetos</a>
+            </section>
 
-        <section id="missao">
-            <h2>Missão, Visão e Valores</h2>
-            <ul>
-                <li><strong>Missão:</strong> Promover inclusão e dignidade.</li>
-                <li><strong>Visão:</strong> Ser referência nacional em transformação social.</li>
-                <li><strong>Valores:</strong> Solidariedade, transparência e respeito.</li>
-            </ul>
-        </section>
+            <section id="missao">
+                <h2>Missão, Visão e Valores</h2>
+                <ul>
+                    <li><strong>Missão:</strong> Promover inclusão e dignidade através de ações efetivas em educação, saúde e desenvolvimento comunitário.</li>
+                    <li><strong>Visão:</strong> Ser referência nacional em transformação social, inspirando solidariedade e criando um legado de esperança.</li>
+                    <li><strong>Valores:</strong> Solidariedade, transparência, respeito, comprometimento e inovação social.</li>
+                </ul>
+            </section>
 
-        <section id="contato">
-            <h2>Contato</h2>
-            <p><strong>Email:</strong> contato@ongesperanca.org.br</p>
-            <p><strong>Telefone:</strong> (11) 99999-9999</p>
-        </section>
+            <section id="contato">
+                <h2>Contato</h2>
+                <p><strong>Email:</strong> contato@ongesperanca.org.br</p>
+                <p><strong>Telefone:</strong> (11) 99999-9999</p>
+            </section>
 
-        <!-- BANNER MOVIDO PARA O FINAL DO CONTEÚDO -->
-        <img src="assets/img/banner.png" alt="Banner da ONG Esperança" class="banner">
+            <img src="assets/img/banner.png" alt="Banner da ONG Esperança" class="banner">
+        </div>
     </main>
 
     <footer>
         <p>© 2025 ONG Esperança. Todos os direitos reservados.</p>
     </footer>
+
+    <script>
+        const menuHamburguer = document.getElementById('menu-hamburguer');
+        const navMenu = document.getElementById('nav-menu').querySelector('ul');
+
+        menuHamburguer.addEventListener('click', () => {
+            navMenu.classList.toggle('aberto');
+        });
+    </script>
 </body>
 </html>
