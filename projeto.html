@@ -15,7 +15,14 @@
             <nav id="nav-menu">
                 <ul>
                     <li><a href="index.html">Início</a></li>
-                    <li><a href="projeto.html" class="ativo">Projetos</a></li>
+                    <li>
+                        <a href="projeto.html" class="ativo">Projetos</a>
+                        <ul class="submenu">
+                            <li><a href="#nossos-projetos">Educação</a></li>
+                            <li><a href="#nossos-projetos">Saúde</a></li>
+                            <li><a href="#nossos-projetos">Comunidade</a></li>
+                        </ul>
+                    </li>
                     <li><a href="cadastro.html">Cadastro</a></li>
                 </ul>
             </nav>
@@ -29,7 +36,6 @@
                 <p>Conheça as iniciativas que estão transformando comunidades e saiba como você pode fazer parte dessa mudança.</p>
 
                 <div class="cards-grid">
-                    <!-- Card 1 -->
                     <div class="card">
                         <img src="assets/img/projeto-educacao.jpg" alt="Crianças estudando" class="card-imagem">
                         <div class="card-corpo">
@@ -41,7 +47,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Card 2 -->
                     <div class="card">
                         <img src="assets/img/projeto-saude.jpg" alt="Profissional de saúde" class="card-imagem">
                         <div class="card-corpo">
@@ -52,7 +57,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Card 3 -->
                     <div class="card">
                         <img src="assets/img/projeto-sopa-solidaria.jpg" alt="Voluntários servindo comida" class="card-imagem">
                         <div class="card-corpo">
@@ -87,7 +91,6 @@
     <script>
         const menuHamburguer = document.getElementById('menu-hamburguer');
         const navMenu = document.getElementById('nav-menu').querySelector('ul');
-
         menuHamburguer.addEventListener('click', () => {
             navMenu.classList.toggle('aberto');
         });

@@ -49,6 +49,10 @@ body {
     background-color: var(--cor-fundo);
     color: var(--cor-texto-principal);
     line-height: 1.6;
+    /* ADIÇÃO: Layout principal com Grid */
+    display: grid;
+    grid-template-rows: auto 1fr auto; /* Header, Main (flexível), Footer */
+    min-height: 100vh;
 }
 
 h1, h2, h3 {
@@ -63,7 +67,7 @@ h3 { font-size: var(--fonte-tamanho-m); }
 
 p {
     margin-bottom: var(--espacamento-p);
-    max-width: 70ch; /* Melhora a legibilidade */
+    max-width: 70ch;
 }
 
 a {
@@ -137,9 +141,8 @@ header h1 {
     margin: 0;
 }
 
-/* Menu Hambúrguer (lógica) */
 .menu-hamburguer {
-    display: none; /* Escondido em telas grandes */
+    display: none;
     font-size: 2rem;
     background: none;
     border: none;
@@ -151,6 +154,10 @@ nav ul {
     list-style: none;
     display: flex;
     gap: var(--espacamento-m);
+}
+
+nav ul li {
+    position: relative; /* ADIÇÃO: Essencial para o dropdown */
 }
 
 nav ul li a {
@@ -166,6 +173,35 @@ nav ul li a.ativo {
     background-color: var(--cor-primaria-escura);
     text-decoration: none;
 }
+
+/* ADIÇÃO: Submenu Dropdown */
+.submenu {
+    display: none;
+    position: absolute;
+    top: 120%;
+    left: 0;
+    background-color: var(--cor-fundo-secao);
+    box-shadow: var(--sombra-padrao);
+    border-radius: var(--raio-borda);
+    padding: var(--espacamento-pp);
+    min-width: 200px;
+    flex-direction: column;
+    z-index: 1100;
+}
+
+.submenu li a {
+    color: var(--cor-primaria-escura);
+    display: block;
+}
+
+.submenu li a:hover {
+    background-color: #e9ecef;
+}
+
+nav ul li:hover > .submenu {
+    display: flex;
+}
+
 
 /* ------------------------------ */
 /* 5. COMPONENTES REUTILIZÁVEIS */
@@ -200,6 +236,12 @@ nav ul li a.ativo {
     transform: translateY(0);
 }
 
+/* ADIÇÃO: Estado de Foco */
+.btn:focus {
+    outline: 3px solid var(--cor-secundaria);
+    outline-offset: 2px;
+}
+
 .btn:disabled {
     background-color: var(--cor-texto-secundario);
     cursor: not-allowed;
@@ -231,7 +273,7 @@ nav ul li a.ativo {
 
 .card-corpo {
     padding: var(--espacamento-m);
-    flex-grow: 1; /* Faz o corpo do card crescer para preencher o espaço */
+    flex-grow: 1;
 }
 
 .card-corpo h3 {
@@ -256,7 +298,6 @@ nav ul li a.ativo {
 .badge-educacao { background-color: #007bff; color: white; }
 .badge-saude { background-color: #28a745; color: white; }
 .badge-comunidade { background-color: #ffc107; color: black; }
-
 
 /* 5.4. Formulários */
 form {
@@ -302,7 +343,6 @@ legend {
     box-shadow: 0 0 0 3px rgba(44, 110, 73, 0.25);
 }
 
-/* Validação visual */
 .form-group input:invalid:not(:placeholder-shown) {
     border-color: #dc3545;
 }
@@ -318,6 +358,20 @@ legend {
     margin-top: var(--espacamento-gg);
 }
 
+/* ADIÇÃO: Componente de Feedback */
+/* 5.6. Alerta */
+.alert {
+    padding: var(--espacamento-p);
+    margin-bottom: var(--espacamento-g);
+    border-radius: var(--raio-borda);
+    border: 1px solid transparent;
+}
+.alert-sucesso {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    border-color: #badbcc;
+}
+
 /* ------------------------------ */
 /* 6. RODAPÉ */
 /* ------------------------------ */
@@ -326,32 +380,28 @@ footer {
     color: var(--cor-branco);
     text-align: center;
     padding: var(--espacamento-g);
-    margin-top: var(--espacamento-gg);
+    margin-top: auto; /* Garante que o rodapé fique no fim com o layout grid */
 }
 
 /* ------------------------------ */
 /* 7. MEDIA QUERIES (RESPONSIVIDADE) */
 /* ------------------------------ */
 
-/* Tablet e telas menores (até 992px) */
+/* Breakpoint 1: Tablet e telas menores (até 992px) */
 @media (max-width: 992px) {
     h1 { font-size: var(--fonte-tamanho-g); }
     h2 { font-size: var(--fonte-tamanho-m); }
 }
 
-/* Celulares e telas pequenas (até 768px) */
+/* Breakpoint 2: Celulares e telas pequenas (até 768px) */
 @media (max-width: 768px) {
-    /* Menu Hambúrguer aparece */
     .menu-hamburguer {
         display: block;
     }
-
     nav {
         width: 100%;
         margin-top: var(--espacamento-p);
     }
-    
-    /* Esconde o menu por padrão */
     nav ul {
         display: none;
         flex-direction: column;
@@ -359,18 +409,61 @@ footer {
         background-color: var(--cor-primaria-escura);
         padding: var(--espacamento-p);
     }
-
-    /* Mostra o menu quando a classe 'aberto' é adicionada via JS */
     nav ul.aberto {
         display: flex;
     }
-
     nav ul li {
         width: 100%;
         text-align: center;
     }
-
     header .header-container {
         justify-content: space-between;
+    }
+    /* Dropdown em Mobile */
+    .submenu {
+        position: static;
+        box-shadow: none;
+        background-color: transparent;
+        padding-left: var(--espacamento-p);
+    }
+    .submenu a {
+        color: var(--cor-branco);
+        padding-left: var(--espacamento-m);
+    }
+    nav ul li:hover > .submenu {
+        display: none; /* Desativa hover */
+    }
+    nav ul.aberto .submenu {
+        display: flex; /* Mostra submenu quando o menu principal está aberto */
+    }
+}
+
+/* ADIÇÃO: Breakpoint 3: Celulares em paisagem (até 576px) */
+@media (max-width: 576px) {
+    body {
+        font-size: var(--fonte-tamanho-pp);
+    }
+    .container {
+        padding: var(--espacamento-m) 0;
+    }
+    header h1 {
+        font-size: var(--fonte-tamanho-p);
+    }
+}
+
+/* ADIÇÃO: Breakpoint 4: Celulares em retrato (até 480px) */
+@media (max-width: 480px) {
+    form {
+        gap: var(--espacamento-m);
+    }
+    fieldset {
+        padding: var(--espacamento-p);
+    }
+}
+
+/* ADIÇÃO: Breakpoint 5: Telas muito grandes (a partir de 1201px) */
+@media (min-width: 1201px) {
+    .container {
+        max-width: 1200px;
     }
 }
