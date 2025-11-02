@@ -35,6 +35,11 @@
                 <h2>Formulário de Cadastro de Voluntário</h2>
                 <p>Preencha os campos abaixo para se juntar à nossa equipe. Campos com feedback visual indicam o preenchimento correto.</p>
 
+                <!-- DEMONSTRAÇÃO DO COMPONENTE DE ALERTA -->
+                <div class="alert alert-sucesso" role="alert">
+                    <strong>Sucesso!</strong> Este é um exemplo de alerta para feedback ao usuário.
+                </div>
+
                 <form action="#" method="POST">
                     <fieldset>
                         <legend>Dados Pessoais</legend>
@@ -89,6 +94,26 @@
     <footer>
         <p>© 2025 ONG Esperança. Todos os direitos reservados.</p>
     </footer>
+
+    <!-- DEMONSTRAÇÃO DO COMPONENTE MODAL (ESTRUTURA HTML) -->
+    <!-- Este modal está oculto por padrão com CSS ('display: none'). 
+         Ele seria exibido dinamicamente com JavaScript. -->
+    <div class="modal-overlay" id="meu-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Título do Modal</h3>
+                <button class="modal-close" aria-label="Fechar">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Este é o conteúdo do modal. Aqui você pode colocar informações importantes, confirmações ou formulários adicionais.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn">Fechar</button>
+                <button class="btn btn-primario">Salvar</button>
+            </div>
+        </div>
+    </div>
+
 
     <script>
         const menuHamburguer = document.getElementById('menu-hamburguer');

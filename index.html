@@ -15,7 +15,14 @@
             <nav id="nav-menu">
                 <ul>
                     <li><a href="index.html" class="ativo">Início</a></li>
-                    <li><a href="projeto.html">Projetos</a></li>
+                    <li>
+                        <a href="projeto.html">Projetos</a>
+                        <ul class="submenu">
+                            <li><a href="projeto.html#nossos-projetos">Educação</a></li>
+                            <li><a href="projeto.html#nossos-projetos">Saúde</a></li>
+                            <li><a href="projeto.html#nossos-projetos">Comunidade</a></li>
+                        </ul>
+                    </li>
                     <li><a href="cadastro.html">Cadastro</a></li>
                 </ul>
             </nav>
@@ -32,11 +39,27 @@
 
             <section id="missao">
                 <h2>Missão, Visão e Valores</h2>
-                <ul>
-                    <li><strong>Missão:</strong> Promover inclusão e dignidade através de ações efetivas em educação, saúde e desenvolvimento comunitário.</li>
-                    <li><strong>Visão:</strong> Ser referência nacional em transformação social, inspirando solidariedade e criando um legado de esperança.</li>
-                    <li><strong>Valores:</strong> Solidariedade, transparência, respeito, comprometimento e inovação social.</li>
-                </ul>
+                <!-- DEMONSTRAÇÃO DO SISTEMA DE GRID DE 12 COLUNAS -->
+                <div class="row">
+                    <div class="col-12 col-md-4">
+                        <div class="feature-box">
+                            <h3>Missão</h3>
+                            <p>Promover inclusão e dignidade através de ações efetivas em educação, saúde e desenvolvimento comunitário.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="feature-box">
+                           <h3>Visão</h3>
+                           <p>Ser referência nacional em transformação social, inspirando solidariedade e criando um legado de esperança.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="feature-box">
+                            <h3>Valores</h3>
+                            <p>Solidariedade, transparência, respeito, comprometimento e inovação social.</p>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <section id="contato">

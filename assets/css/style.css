@@ -49,9 +49,8 @@ body {
     background-color: var(--cor-fundo);
     color: var(--cor-texto-principal);
     line-height: 1.6;
-    /* ADIÇÃO: Layout principal com Grid */
     display: grid;
-    grid-template-rows: auto 1fr auto; /* Header, Main (flexível), Footer */
+    grid-template-rows: auto 1fr auto;
     min-height: 100vh;
 }
 
@@ -157,7 +156,7 @@ nav ul {
 }
 
 nav ul li {
-    position: relative; /* ADIÇÃO: Essencial para o dropdown */
+    position: relative;
 }
 
 nav ul li a {
@@ -174,7 +173,6 @@ nav ul li a.ativo {
     text-decoration: none;
 }
 
-/* ADIÇÃO: Submenu Dropdown */
 .submenu {
     display: none;
     position: absolute;
@@ -201,7 +199,6 @@ nav ul li a.ativo {
 nav ul li:hover > .submenu {
     display: flex;
 }
-
 
 /* ------------------------------ */
 /* 5. COMPONENTES REUTILIZÁVEIS */
@@ -236,7 +233,6 @@ nav ul li:hover > .submenu {
     transform: translateY(0);
 }
 
-/* ADIÇÃO: Estado de Foco */
 .btn:focus {
     outline: 3px solid var(--cor-secundaria);
     outline-offset: 2px;
@@ -358,8 +354,58 @@ legend {
     margin-top: var(--espacamento-gg);
 }
 
-/* ADIÇÃO: Componente de Feedback */
-/* 5.6. Alerta */
+/* ------------------------------ */
+/* 5.A. SISTEMA DE GRID (12 COLUNAS) - REQUISITO ADICIONADO */
+/* ------------------------------ */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: calc(var(--espacamento-m) / -2);
+    margin-right: calc(var(--espacamento-m) / -2);
+}
+
+[class*="col-"] {
+    padding-left: calc(var(--espacamento-m) / 2);
+    padding-right: calc(var(--espacamento-m) / 2);
+    width: 100%; /* Default para mobile-first */
+}
+
+/* Colunas para telas pequenas e acima */
+.col-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
+.col-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
+.col-3 { flex: 0 0 25%; max-width: 25%; }
+.col-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+.col-5 { flex: 0 0 41.666667%; max-width: 41.666667%; }
+.col-6 { flex: 0 0 50%; max-width: 50%; }
+.col-7 { flex: 0 0 58.333333%; max-width: 58.333333%; }
+.col-8 { flex: 0 0 66.666667%; max-width: 66.666667%; }
+.col-9 { flex: 0 0 75%; max-width: 75%; }
+.col-10 { flex: 0 0 83.333333%; max-width: 83.333333%; }
+.col-11 { flex: 0 0 91.666667%; max-width: 91.666667%; }
+.col-12 { flex: 0 0 100%; max-width: 100%; }
+
+/* Componente para demonstrar o grid */
+.feature-box {
+    background: var(--cor-fundo-secao);
+    padding: var(--espacamento-m);
+    border-radius: var(--raio-borda);
+    box-shadow: var(--sombra-padrao);
+    height: 100%;
+    margin-bottom: var(--espacamento-m);
+}
+.feature-box h3 {
+    margin-top: 0;
+}
+.feature-box p {
+    margin-bottom: 0;
+}
+
+
+/* ------------------------------ */
+/* 5.B. COMPONENTES DE FEEDBACK - REQUISITO ATUALIZADO */
+/* ------------------------------ */
+
+/* 5.B.1 Alerta */
 .alert {
     padding: var(--espacamento-p);
     margin-bottom: var(--espacamento-g);
@@ -372,6 +418,62 @@ legend {
     border-color: #badbcc;
 }
 
+/* 5.B.2 Modal */
+.modal-overlay {
+    display: none; /* Alterar para 'flex' com JS para exibir */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    background-color: var(--cor-fundo-secao);
+    padding: var(--espacamento-g);
+    border-radius: var(--raio-borda);
+    box-shadow: var(--sombra-padrao);
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+}
+
+.modal-header {
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: var(--espacamento-p);
+    margin-bottom: var(--espacamento-p);
+}
+
+.modal-header h3 {
+    margin: 0;
+}
+
+.modal-close {
+    position: absolute;
+    top: var(--espacamento-p);
+    right: var(--espacamento-p);
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--cor-texto-secundario);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.modal-close:hover {
+    color: var(--cor-texto-principal);
+}
+
+.modal-footer {
+    border-top: 1px solid #e9ecef;
+    padding-top: var(--espacamento-p);
+    margin-top: var(--espacamento-p);
+    text-align: right;
+}
+
 /* ------------------------------ */
 /* 6. RODAPÉ */
 /* ------------------------------ */
@@ -380,7 +482,7 @@ footer {
     color: var(--cor-branco);
     text-align: center;
     padding: var(--espacamento-g);
-    margin-top: auto; /* Garante que o rodapé fique no fim com o layout grid */
+    margin-top: auto;
 }
 
 /* ------------------------------ */
@@ -419,7 +521,6 @@ footer {
     header .header-container {
         justify-content: space-between;
     }
-    /* Dropdown em Mobile */
     .submenu {
         position: static;
         box-shadow: none;
@@ -431,14 +532,30 @@ footer {
         padding-left: var(--espacamento-m);
     }
     nav ul li:hover > .submenu {
-        display: none; /* Desativa hover */
+        display: none;
     }
     nav ul.aberto .submenu {
-        display: flex; /* Mostra submenu quando o menu principal está aberto */
+        display: flex;
     }
 }
 
-/* ADIÇÃO: Breakpoint 3: Celulares em paisagem (até 576px) */
+/* ADIÇÃO: Breakpoint 3: Grid responsivo para telas médias (a partir de 769px) */
+@media (min-width: 769px) {
+    .col-md-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
+    .col-md-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
+    .col-md-3 { flex: 0 0 25%; max-width: 25%; }
+    .col-md-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+    .col-md-5 { flex: 0 0 41.666667%; max-width: 41.666667%; }
+    .col-md-6 { flex: 0 0 50%; max-width: 50%; }
+    .col-md-7 { flex: 0 0 58.333333%; max-width: 58.333333%; }
+    .col-md-8 { flex: 0 0 66.666667%; max-width: 66.666667%; }
+    .col-md-9 { flex: 0 0 75%; max-width: 75%; }
+    .col-md-10 { flex: 0 0 83.333333%; max-width: 83.333333%; }
+    .col-md-11 { flex: 0 0 91.666667%; max-width: 91.666667%; }
+    .col-md-12 { flex: 0 0 100%; max-width: 100%; }
+}
+
+/* ADIÇÃO: Breakpoint 4: Celulares em paisagem (até 576px) */
 @media (max-width: 576px) {
     body {
         font-size: var(--fonte-tamanho-pp);
@@ -448,16 +565,6 @@ footer {
     }
     header h1 {
         font-size: var(--fonte-tamanho-p);
-    }
-}
-
-/* ADIÇÃO: Breakpoint 4: Celulares em retrato (até 480px) */
-@media (max-width: 480px) {
-    form {
-        gap: var(--espacamento-m);
-    }
-    fieldset {
-        padding: var(--espacamento-p);
     }
 }
 
