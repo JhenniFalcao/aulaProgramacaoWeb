@@ -226,7 +226,6 @@ nav ul li:hover > .submenu {
     transform: translateY(-2px);
     box-shadow: var(--sombra-padrao);
     text-decoration: none;
-    /* Correção para manter a cor do texto no hover */
     color: var(--cor-branco) !important; 
 }
 .btn-primario:hover { color: var(--cor-branco); }
@@ -350,12 +349,6 @@ legend {
     border-color: #28a745;
 }
 
-.form-actions {
-    display: flex;
-    gap: var(--espacamento-p);
-    flex-wrap: wrap;
-}
-
 /* 5.5. Banner */
 .banner {
     width: 100%;
@@ -416,6 +409,7 @@ legend {
 
 /* 5.B.1 Alerta */
 .alert {
+    position: relative; /* NOVO: Necessário para posicionar o botão de fechar */
     padding: var(--espacamento-p);
     margin-bottom: var(--espacamento-g);
     border-radius: var(--raio-borda);
@@ -425,6 +419,26 @@ legend {
     background-color: #d1e7dd;
     color: #0f5132;
     border-color: #badbcc;
+}
+
+/* NOVO: Estilo para o botão de fechar o alerta */
+.alert-close {
+    position: absolute;
+    top: 50%;
+    right: var(--espacamento-p);
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0f5132;
+    opacity: 0.7;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+.alert-close:hover {
+    opacity: 1;
 }
 
 /* 5.B.2 Modal */
@@ -486,7 +500,7 @@ legend {
     justify-content: flex-end;
 }
 
-/* 5.B.3 Toast (Brinde) - NOVO COMPONENTE */
+/* 5.B.3 Toast (Brinde) */
 #toast-container {
     position: fixed;
     bottom: var(--espacamento-g);
@@ -513,6 +527,15 @@ legend {
 .toast.show {
     opacity: 1;
     transform: translateX(0);
+}
+
+/* ------------------------------ */
+/* 5.C. CLASSES UTILITÁRIAS */
+/* ------------------------------ */
+
+/* NOVO: Classe para esconder elementos de forma acessível */
+.hidden {
+    display: none;
 }
 
 /* ------------------------------ */

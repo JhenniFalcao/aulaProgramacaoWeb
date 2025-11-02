@@ -33,11 +33,12 @@
         <div class="container">
             <section id="formulario-cadastro">
                 <h2>Formulário de Cadastro de Voluntário</h2>
-                <p>Preencha os campos abaixo para se juntar à nossa equipe. <strong>Pressione "Enviar Cadastro" para ver o componente de feedback 'toast' em ação.</strong></p>
+                <p>Preencha os campos abaixo para se juntar à nossa equipe. <strong>Ao clicar em "Enviar Cadastro", ambos os componentes de feedback (alerta e toast) serão exibidos.</strong></p>
 
-                <!-- DEMONSTRAÇÃO DO COMPONENTE DE ALERTA -->
-                <div class="alert alert-sucesso" role="alert">
-                    <strong>Sucesso!</strong> Este é um exemplo de alerta para feedback ao usuário.
+                <!-- COMPONENTE DE ALERTA (Inicialmente escondido) -->
+                <div class="alert alert-sucesso hidden" id="form-alert" role="alert">
+                    <span><strong>Sucesso!</strong> Este é o componente de alerta, que pode ser fechado.</span>
+                    <button class="alert-close" id="alert-close-btn" aria-label="Fechar">&times;</button>
                 </div>
 
                 <form action="#" method="POST" id="form-voluntario">
@@ -95,7 +96,7 @@
         <p>© 2025 ONG Esperança. Todos os direitos reservados.</p>
     </footer>
 
-    <!-- DEMONSTRAÇÃO DO COMPONENTE MODAL (ESTRUTURA HTML) -->
+    <!-- COMPONENTE MODAL (Estrutura HTML) -->
     <div class="modal-overlay" id="meu-modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -124,36 +125,44 @@
             navMenu.classList.toggle('aberto');
         });
 
-        // --- SCRIPT PARA O TOAST ---
-        const toastContainer = document.getElementById('toast-container');
+        // --- SCRIPTS DOS COMPONENTES DE FEEDBACK ---
         const formVoluntario = document.getElementById('form-voluntario');
+        
+        // Lógica do Alerta
+        const formAlert = document.getElementById('form-alert');
+        const alertCloseBtn = document.getElementById('alert-close-btn');
+
+        alertCloseBtn.addEventListener('click', () => {
+            formAlert.classList.add('hidden');
+        });
+
+        // Lógica do Toast
+        const toastContainer = document.getElementById('toast-container');
 
         function showToast(message, duration = 3000) {
-            // Cria o elemento toast
             const toast = document.createElement('div');
             toast.classList.add('toast');
             toast.textContent = message;
-
-            // Adiciona ao container
             toastContainer.appendChild(toast);
 
-            // Adiciona a classe 'show' para iniciar a animação de entrada
             setTimeout(() => {
                 toast.classList.add('show');
             }, 10); 
 
-            // Configura o timer para remover o toast
             setTimeout(() => {
                 toast.classList.remove('show');
-                toast.addEventListener('transitionend', () => {
-                    toast.remove();
-                });
+                toast.addEventListener('transitionend', () => toast.remove());
             }, duration);
         }
         
-        // Event listener para o envio do formulário, que agora dispara o toast
+        // Evento principal que dispara o Alerta e o Toast
         formVoluntario.addEventListener('submit', (event) => {
-            event.preventDefault(); // Impede o envio real do formulário para a demonstração
+            event.preventDefault(); 
+            
+            // 1. Mostra o Alerta
+            formAlert.classList.remove('hidden');
+            
+            // 2. Mostra o Toast
             showToast('Cadastro enviado com sucesso!');
         });
     </script>
