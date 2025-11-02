@@ -33,14 +33,14 @@
         <div class="container">
             <section id="formulario-cadastro">
                 <h2>Formulário de Cadastro de Voluntário</h2>
-                <p>Preencha os campos abaixo para se juntar à nossa equipe. Campos com feedback visual indicam o preenchimento correto.</p>
+                <p>Preencha os campos abaixo para se juntar à nossa equipe. <strong>Pressione "Enviar Cadastro" para ver o componente de feedback 'toast' em ação.</strong></p>
 
                 <!-- DEMONSTRAÇÃO DO COMPONENTE DE ALERTA -->
                 <div class="alert alert-sucesso" role="alert">
                     <strong>Sucesso!</strong> Este é um exemplo de alerta para feedback ao usuário.
                 </div>
 
-                <form action="#" method="POST">
+                <form action="#" method="POST" id="form-voluntario">
                     <fieldset>
                         <legend>Dados Pessoais</legend>
                         <div class="form-group">
@@ -84,7 +84,7 @@
                             <input type="text" id="estado" name="estado" required maxlength="2" size="2">
                         </div>
                     </fieldset>
-
+                    
                     <button type="submit" class="btn btn-primario">Enviar Cadastro</button>
                 </form>
             </section>
@@ -96,8 +96,6 @@
     </footer>
 
     <!-- DEMONSTRAÇÃO DO COMPONENTE MODAL (ESTRUTURA HTML) -->
-    <!-- Este modal está oculto por padrão com CSS ('display: none'). 
-         Ele seria exibido dinamicamente com JavaScript. -->
     <div class="modal-overlay" id="meu-modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -114,12 +112,49 @@
         </div>
     </div>
 
+    <!-- Container para os Toasts -->
+    <div id="toast-container"></div>
+
 
     <script>
+        // --- Script do Menu Hamburguer ---
         const menuHamburguer = document.getElementById('menu-hamburguer');
         const navMenu = document.getElementById('nav-menu').querySelector('ul');
         menuHamburguer.addEventListener('click', () => {
             navMenu.classList.toggle('aberto');
+        });
+
+        // --- SCRIPT PARA O TOAST ---
+        const toastContainer = document.getElementById('toast-container');
+        const formVoluntario = document.getElementById('form-voluntario');
+
+        function showToast(message, duration = 3000) {
+            // Cria o elemento toast
+            const toast = document.createElement('div');
+            toast.classList.add('toast');
+            toast.textContent = message;
+
+            // Adiciona ao container
+            toastContainer.appendChild(toast);
+
+            // Adiciona a classe 'show' para iniciar a animação de entrada
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 10); 
+
+            // Configura o timer para remover o toast
+            setTimeout(() => {
+                toast.classList.remove('show');
+                toast.addEventListener('transitionend', () => {
+                    toast.remove();
+                });
+            }, duration);
+        }
+        
+        // Event listener para o envio do formulário, que agora dispara o toast
+        formVoluntario.addEventListener('submit', (event) => {
+            event.preventDefault(); // Impede o envio real do formulário para a demonstração
+            showToast('Cadastro enviado com sucesso!');
         });
     </script>
 </body>

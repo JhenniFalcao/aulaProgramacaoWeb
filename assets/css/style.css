@@ -226,8 +226,11 @@ nav ul li:hover > .submenu {
     transform: translateY(-2px);
     box-shadow: var(--sombra-padrao);
     text-decoration: none;
-    color: var(--cor-branco);
+    /* Correção para manter a cor do texto no hover */
+    color: var(--cor-branco) !important; 
 }
+.btn-primario:hover { color: var(--cor-branco); }
+
 
 .btn:active {
     transform: translateY(0);
@@ -347,6 +350,12 @@ legend {
     border-color: #28a745;
 }
 
+.form-actions {
+    display: flex;
+    gap: var(--espacamento-p);
+    flex-wrap: wrap;
+}
+
 /* 5.5. Banner */
 .banner {
     width: 100%;
@@ -355,7 +364,7 @@ legend {
 }
 
 /* ------------------------------ */
-/* 5.A. SISTEMA DE GRID (12 COLUNAS) - REQUISITO ADICIONADO */
+/* 5.A. SISTEMA DE GRID (12 COLUNAS) */
 /* ------------------------------ */
 .row {
     display: flex;
@@ -402,7 +411,7 @@ legend {
 
 
 /* ------------------------------ */
-/* 5.B. COMPONENTES DE FEEDBACK - REQUISITO ATUALIZADO */
+/* 5.B. COMPONENTES DE FEEDBACK */
 /* ------------------------------ */
 
 /* 5.B.1 Alerta */
@@ -472,6 +481,38 @@ legend {
     padding-top: var(--espacamento-p);
     margin-top: var(--espacamento-p);
     text-align: right;
+    display: flex;
+    gap: var(--espacamento-pp);
+    justify-content: flex-end;
+}
+
+/* 5.B.3 Toast (Brinde) - NOVO COMPONENTE */
+#toast-container {
+    position: fixed;
+    bottom: var(--espacamento-g);
+    right: var(--espacamento-g);
+    z-index: 3000;
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacamento-p);
+    align-items: flex-end;
+}
+
+.toast {
+    background-color: var(--cor-primaria-escura);
+    color: var(--cor-branco);
+    padding: var(--espacamento-p) var(--espacamento-m);
+    border-radius: var(--raio-borda);
+    box-shadow: var(--sombra-padrao);
+    font-weight: var(--fonte-peso-bold);
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 /* ------------------------------ */
@@ -565,6 +606,16 @@ footer {
     }
     header h1 {
         font-size: var(--fonte-tamanho-p);
+    }
+    #toast-container {
+        right: var(--espacamento-p);
+        bottom: var(--espacamento-p);
+        width: calc(100% - (2 * var(--espacamento-p)));
+        align-items: center;
+    }
+    .toast {
+        width: 100%;
+        text-align: center;
     }
 }
 
