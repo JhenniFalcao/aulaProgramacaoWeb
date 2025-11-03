@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ONG Esperança - Início</title>
+    <title>ONG Esperança</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -14,75 +14,35 @@
             <button class="menu-hamburguer" id="menu-hamburguer">&#9776;</button>
             <nav id="nav-menu">
                 <ul>
-                    <li><a href="index.html" class="ativo">Início</a></li>
+                    <!-- Os links usam caminhos que o nosso roteador JS vai entender -->
+                    <li><a href="/" class="nav-link">Início</a></li>
                     <li>
-                        <a href="projeto.html">Projetos</a>
+                        <a href="/projetos" class="nav-link">Projetos</a>
                         <ul class="submenu">
-                            <li><a href="projeto.html#nossos-projetos">Educação</a></li>
-                            <li><a href="projeto.html#nossos-projetos">Saúde</a></li>
-                            <li><a href="projeto.html#nossos-projetos">Comunidade</a></li>
+                            <li><a href="/projetos#nossos-projetos">Educação</a></li>
+                            <li><a href="/projetos#nossos-projetos">Saúde</a></li>
+                            <li><a href="/projetos#nossos-projetos">Comunidade</a></li>
                         </ul>
                     </li>
-                    <li><a href="cadastro.html">Cadastro</a></li>
+                    <li><a href="/cadastro" class="nav-link">Cadastro</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main>
-        <div class="container">
-            <section id="sobre">
-                <h2>Sobre Nós</h2>
-                <p>A ONG Esperança atua há mais de 10 anos promovendo ações sociais, educação e saúde para comunidades carentes. Nosso compromisso é com a transformação social, oferecendo oportunidades e construindo um futuro mais justo para todos.</p>
-                <a href="projeto.html" class="btn btn-primario">Conheça Nossos Projetos</a>
-            </section>
-
-            <section id="missao">
-                <h2>Missão, Visão e Valores</h2>
-                <!-- DEMONSTRAÇÃO DO SISTEMA DE GRID DE 12 COLUNAS -->
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                        <div class="feature-box">
-                            <h3>Missão</h3>
-                            <p>Promover inclusão e dignidade através de ações efetivas em educação, saúde e desenvolvimento comunitário.</p>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <div class="feature-box">
-                           <h3>Visão</h3>
-                           <p>Ser referência nacional em transformação social, inspirando solidariedade e criando um legado de esperança.</p>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <div class="feature-box">
-                            <h3>Valores</h3>
-                            <p>Solidariedade, transparência, respeito, comprometimento e inovação social.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="contato">
-                <h2>Contato</h2>
-                <p><strong>Email:</strong> contato@ongesperanca.org.br</p>
-                <p><strong>Telefone:</strong> (11) 99999-9999</p>
-            </section>
-
-            <img src="assets/img/banner.png" alt="Banner da ONG Esperança" class="banner">
-        </div>
+    <!-- Este é o container principal onde o conteúdo dinâmico será injetado -->
+    <main id="app-content">
+        <!-- O conteúdo das páginas (home, projetos, cadastro) aparecerá aqui -->
     </main>
 
     <footer>
         <p>© 2025 ONG Esperança. Todos os direitos reservados.</p>
     </footer>
 
-    <script>
-        const menuHamburguer = document.getElementById('menu-hamburguer');
-        const navMenu = document.getElementById('nav-menu').querySelector('ul');
+    <!-- Container para os Toasts de notificação -->
+    <div id="toast-container"></div>
 
-        menuHamburguer.addEventListener('click', () => {
-            navMenu.classList.toggle('aberto');
-        });
-    </script>
+    <!-- Ponto de entrada do nosso JavaScript. O "type=module" é essencial! -->
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>
